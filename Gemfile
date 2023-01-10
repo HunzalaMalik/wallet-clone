@@ -31,6 +31,10 @@ gem 'rails_admin', '~> 3.0'
 
 gem 'devise'
 
+gem "rolify"
+
+gem 'cancancan'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

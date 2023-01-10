@@ -78,6 +78,7 @@ GEM
     bootsnap (1.15.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cancancan (3.4.0)
     capybara (3.38.0)
       addressable
       matrix
@@ -209,6 +210,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rolify (6.0.0)
     rubocop (1.43.0)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -287,6 +289,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  cancancan
   capybara
   cssbundling-rails
   debug
@@ -298,6 +301,7 @@ DEPENDENCIES
   rails (~> 7.0.4)
   rails_admin (~> 3.0)
   redis (~> 4.0)
+  rolify
   rubocop
   rubocop-performance
   rubocop-rails
