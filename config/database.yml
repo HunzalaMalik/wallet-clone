@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: wallet_clone_development
+  username: <%= Rails.application.credentials.postgres.username %>
+  password: <%= Rails.application.credentials.postgres.password %>
+
+test:
+  <<: *default
+  database: wallet_clone_test
+  username: <%= Rails.application.credentials.postgres.username %>
+  password: <%= Rails.application.credentials.postgres.password %>
+
+production:
+  <<: *default
+  database: wallet_clone_production
+  username: wallet_clone
+  password: <%= ENV["WALLET_CLONE_DATABASE_PASSWORD"] %>
