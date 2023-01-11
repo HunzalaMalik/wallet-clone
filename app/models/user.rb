@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   enum :gender, { male: 0, female: 1, cant_specify: 2 }
 
-  validates :email, :name, presence: true
+  validates :email, presence: true
   validates :name, presence: true, allow_blank: false,
                    format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }
   validates :gender, inclusion: { in: User.genders.keys }

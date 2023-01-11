@@ -34,10 +34,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_063105) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.integer "gender"
-    t.string "cnic"
-    t.string "address"
+    t.string "name", default: "", null: false
+    t.integer "gender", default: 0, null: false
+    t.string "cnic", default: "", null: false
+    t.string "address", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
