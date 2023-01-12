@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_063105) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_12_092858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.string "nickname", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "fund_transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "payee_id", null: false
+    t.bigint "purpose_of_payment_id", null: false
+    t.integer "amount", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payee_id"], name: "index_fund_transactions_on_payee_id"
+    t.index ["purpose_of_payment_id"], name: "index_fund_transactions_on_purpose_of_payment_id"
+    t.index ["user_id"], name: "index_fund_transactions_on_user_id"
+  end
+
+  create_table "purpose_of_payments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -40,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_063105) do
     t.string "address", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cnic"], name: "index_users_on_cnic", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -53,4 +82,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_063105) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "wallets", force: :cascade do |t|
+    t.integer "amount", default: 0
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_wallets_on_user_id", unique: true
+  end
+
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "fund_transactions", "purpose_of_payments"
+  add_foreign_key "fund_transactions", "users", column: "payee_id"
+  add_foreign_key "wallets", "users"
 end
