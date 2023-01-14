@@ -1,0 +1,18 @@
+<tr class="">
+  <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%=friendship.nickname %></td>
+  <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%=User.find_by(id: friendship.friend_id).email %></td>
+  <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">
+    <%= link_to new_fund_transaction_path, class: 'text-green-700' do%>
+      <i class="fa-solid fa-money-bill-transfer text-xl transition transform hover:-translate-y-0.5"></i>
+    <% end %>
+  </td>
+  <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap flex justify-around">
+    <%= link_to "#", class: 'text-blue-700' do%>
+      <i class="fa-sharp fa-solid fa-pen-to-square text-xl transition transform hover:-translate-y-0.5"></i>
+    <% end %>
+    |
+    <%= link_to friendship_path(friendship.friend_id), data: {turbo_method: :delete} , class: 'text-primary' do%>
+      <i class="fa-solid fa-trash text-xl transition transform hover:-translate-y-0.5"></i>
+    <% end %>
+  </td>
+</tr>

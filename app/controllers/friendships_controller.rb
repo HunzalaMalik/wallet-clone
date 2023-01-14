@@ -4,7 +4,11 @@ class FriendshipsController < ApplicationController
   before_action :set_friendship, only: %i[update destroy]
 
   def index
-    @friendships = current_user.friendship.all
+    @friendships = current_user.friendships.all
+  end
+
+  def new
+    @friendship = current_user.friendships.build
   end
 
   def create
@@ -30,7 +34,8 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship.destroy
 
-    redirect_to request.referer, flash[:notice] = 'Payee has been removed'
+    redirect_to request.referer
+    flash[:notice] = 'Payee has been removed'
   end
 
   private

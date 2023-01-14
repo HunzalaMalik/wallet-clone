@@ -2,12 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
+  .color-primary {
+    @apply bg-rose-700;
+  }
+  .color-secondary {
+    @apply bg-white
+  }
+  .text-primary {
+    @apply text-rose-700;
+  }
+  .text-secondary {
+    @apply text-white;
+  }
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply text-secondary bg-rose-700 hover:bg-rose-500 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+  }
+  .btn-secondary {
+    @apply text-primary bg-white hover:bg-rose-300 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
   }
 }
-
-*/

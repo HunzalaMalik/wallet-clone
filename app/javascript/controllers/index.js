@@ -3,6 +3,10 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-
+import Dropdown from 'stimulus-dropdown'
+import { Modal } from "tailwindcss-stimulus-components"
 import HelloController from "./hello_controller"
+
 application.register("hello", HelloController)
+application.register('dropdown', Dropdown)
+application.register('modal', Modal)

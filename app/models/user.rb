@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   enum :gender, { male: 0, female: 1, cant_specify: 2 }
 
+  scope :find_payee, ->(info) { where('email=? OR contact_no=?', info, info) }
+
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true, allow_blank: false,
                    format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }

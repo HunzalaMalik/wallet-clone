@@ -1,29 +1,65 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="flex justify-center mt-20">
+  <div class="w-auto p-4 color-primary border border-gray-200 rounded-2xl shadow-xl">
+    <%= render "devise/shared/top_links" %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="space-y-9 my-16">
+        <h5 class="text-4xl text-center font-medium text-white">Sign Up</h5>
+        <div class= "flex justify-around">
+          <div class= "mr-10">
+            <%= f.label :email, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+          <div>
+            <%= f.label :name, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "name", class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+        </div>
+        <div class= "flex justify-around">
+          <div class= "mr-10">
+            <%= f.label :password, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.password_field :password, autofocus: true, autocomplete: "enter password", placeholder: "Enter Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
+          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+          <div>
+            <%= f.label :password_confirmation, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "re-enter password", placeholder: "Re-Enter Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
+          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+        </div>
+        <div class= "flex justify-around">
+          <div class= "mr-10">
+            <%= f.label :cnic, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.number_field :cnic, autofocus: true, placeholder: "CNIC without dashes", class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+          <div>
+            <%= f.label :gender, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.select :gender, User.genders.keys.map{ |key| [key.humanize, key] }, {}, { class: "w-60"}%>
+          </div>
+        </div>
+        <div class= "flex justify-around">
+          <div class= "mr-10">
+            <%= f.label :contact_number, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.number_field :contact_no, autofocus: true, placeholder: "03xxxxxxxxx (without dashes)", class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+          <div>
+            <%= f.label :address, class:'block mb-2 text-sm font-medium text-white'%>
+            <%= f.text_field :address, autofocus: true, placeholder: "House No., Street, City, Country.", class:
+        'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5' %>
+          </div>
+        </div>
+        <%= f.submit "Sign Up", class: "btn-secondary w-full" %>
+      </div>
+      <%= render "devise/shared/links" %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
