@@ -11,6 +11,8 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - 'db/**/*'
+    - 'app/components/**/*'
+    - 'app/controllers/users/**/*'
 
 Layout/LineLength:
   Max: 120

@@ -6,17 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-      <%= yield %>
-    </main>
+    <div class="flex h-screen max-w-full">
+      <section class="w-2/4 bg-slate-100	 shadow-xl shadow-gray-500 ">
+      </section>
+      <main class="container bg-white w-full h-screen">
+        <%if current_user && current_user.has_role?(:user)%>
+          <%= render "common/navbar" %>
+        <%end%>
+        <%= turbo_frame_tag "modal" %>
+        <%= render partial: "common/flash" %>
+        <%= yield %>
+      </main>
+      <section class="w-2/4 bg-slate-100	 shadow-xl shadow-gray-500 ">
+      </section>
+    </div>
   </body>
 </html>

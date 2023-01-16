@@ -4,5 +4,20 @@
 
 import { application } from "./application"
 
+import BalanceToggleController from "./balance_toggle_controller"
+application.register("balance-toggle", BalanceToggleController)
+
+import FlashAutoHideController from "./flash_auto_hide_controller"
+application.register("flash-auto-hide", FlashAutoHideController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import MenuController from "./menu_controller"
+application.register("menu", MenuController)
+
+import TurbomodalController from "./turbomodal_controller"
+application.register("turbomodal", TurbomodalController)
+
+import Dropdown from 'stimulus-dropdown'
+application.register('dropdown', Dropdown)

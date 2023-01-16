@@ -1,0 +1,33 @@
+<div class="flex justify-center mt-5 h-3/4">
+  <div class="block space-y-8 w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <h1 class="font-bold text-4xl text-center">All Added Payee</h1>
+    <%= link_to 'Add Payee', new_friendship_path, data: { turbo_frame: "modal" }, class: 'btn-primary font-semibold' %>
+    <div class="relative overflow-x-auto flex justify-center">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+          <tr>
+            <th scope="col" class="px-6 py-3 rounded-l-lg">
+              NickName
+            </th>
+            <th scope="col" class="px-6 py-3 text-center">
+              Email
+            </th>
+            <th scope="col" class="px-6 py-3 text-center">
+              Transfer
+            </th>
+            <th scope="col" class="px-6 py-3 rounded-r-lg text-center">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody id="payees" class= "">
+          <% @friendships.each do |friendship|%>
+            <%= render partial: "friendships/friendship", locals:{friendship: friendship}%>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+      <%== pagy_nav(@pagy, nav_class: 'bg-gray-200') %>
+
+  </div>
+</div>

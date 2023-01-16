@@ -4,14 +4,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :create, User
+    # can :create, User
 
-    return if user.blank?
+    # return if user.blank?
 
-    can %i[read update], User, user: user
+    # can %i[read update], User, user: user
 
-    return unless user.admin?
+    # return unless user.admin?
 
-    can %i[read update destroy], User
+    # can %i[read update destroy], User
   end
 end

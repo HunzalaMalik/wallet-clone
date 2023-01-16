@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-controller="modal" data-action="keyup@document->modal#handleKeyup">
+    <div class="modal-background" data-action="click->modal#close"></div>
+
+    <div class="modal-styles-and-stuff">
+      <button data-action="modal#close">X</button>
+
+      <%= turbo_frame_tag "modal-body" do %>
+        <%= yield %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
