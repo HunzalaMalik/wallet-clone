@@ -8,12 +8,12 @@
         <%= f.label :email, class:'block mb-2 text-sm font-medium text-white'%> 
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class:
         'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-        focus:border-blue-500 block w-full p-2.5' %>
+        focus:border-blue-500 block w-full p-2.5', required: true %>
       </div>
       <div>
         <%= f.label :password, class:'block mb-2 text-sm font-medium text-white'%> 
         <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: "Current Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
-        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5', required: true %>
       </div>
       <div class="flex items-start">
         <div class="flex items-start">

@@ -43,6 +43,10 @@ gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'font-awesome-sass', '~> 6.2.1'
 
+gem 'pagy'
+
+gem 'view_component', '~> 2.82'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end

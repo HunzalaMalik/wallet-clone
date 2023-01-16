@@ -10,25 +10,25 @@
             <%= f.label :email, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5' %>
+          focus:border-blue-500 block w-full p-2.5',required: true %>
           </div>
           <div>
             <%= f.label :name, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "name", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5' %>
+          focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
         </div>
         <div class= "flex justify-around">
           <div class= "mr-10">
             <%= f.label :password, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.password_field :password, autofocus: true, autocomplete: "enter password", placeholder: "Enter Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
-          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
           <div>
             <%= f.label :password_confirmation, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "re-enter password", placeholder: "Re-Enter Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
-          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' %>
+          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
         </div>
         <div class= "flex justify-around">
@@ -36,25 +36,25 @@
             <%= f.label :cnic, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.number_field :cnic, autofocus: true, placeholder: "CNIC without dashes", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5' %>
+          focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
           <div>
             <%= f.label :gender, class:'block mb-2 text-sm font-medium text-white'%>
-            <%= f.select :gender, User.genders.keys.map{ |key| [key.humanize, key] }, {}, { class: "w-60"}%>
+            <%= f.select :gender, User.genders.keys.map{ |key| [key.humanize, key] }, {}, { class: "w-60"}, required: true%>
           </div>
         </div>
         <div class= "flex justify-around">
           <div class= "mr-10">
             <%= f.label :contact_number, class:'block mb-2 text-sm font-medium text-white'%>
-            <%= f.number_field :contact_no, autofocus: true, placeholder: "03xxxxxxxxx (without dashes)", class:
+            <%= f.text_field :contact_no, autofocus: true, placeholder: "03xxxxxxxxx (without dashes)", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5' %>
+          focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
           <div>
             <%= f.label :address, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.text_field :address, autofocus: true, placeholder: "House No., Street, City, Country.", class:
         'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5' %>
+          focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
         </div>
         <%= f.submit "Sign Up", class: "btn-secondary w-full" %>

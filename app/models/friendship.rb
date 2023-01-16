@@ -6,6 +6,7 @@ class Friendship < ApplicationRecord
 
   scope :friends, ->(id) { where('user_id=?', id) }
 
+  validates :user_id, uniqueness: { scope: :friend_id }
   validates :nickname, presence: true, allow_blank: false,
                        format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }
 end

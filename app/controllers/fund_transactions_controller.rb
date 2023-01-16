@@ -3,11 +3,15 @@
 class FundTransactionsController < ApplicationController
   before_action :find_payee_id, only: %i[create]
   def index
-    @fund_transactions = FundTransaction.transactions(current_user.id)
+    @pagy, @fund_transactions = pagy(FundTransaction.transactions(current_user.id).order('created_at DESC'), items: 13)
   end
 
   def new
-    @fund_transaction = current_user.fund_transactions.build
+    @fund_transaction = if params[:payee_id].present?
+                          current_user.fund_transactions.build(payee_id: params[:payee_id])
+                        else
+                          current_user.fund_transactions.build
+                        end
   end
 
   def create

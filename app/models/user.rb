@@ -24,4 +24,5 @@ class User < ApplicationRecord
   validates :password, length: { maximum: 8 }
   validates :cnic, presence: true, length: { maximum: 13 }, uniqueness: true
   validates :address, presence: true
+  validates :contact_no, presence: true
 end
