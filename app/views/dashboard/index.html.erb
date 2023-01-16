@@ -3,17 +3,17 @@
     <div class="block w-2/6 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
       <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Total Balance</h5>
       <div data-controller="balance-toggle" class= "flex">
-      <p data-balance-toggle-target="item" class="font-normal text-gray-700 " hidden>Rs. <%=current_user.wallet.amount%></p>
-      <a data-action="balance-toggle#toggleTargets" class="ml-3 fa-regular fa-eye"></a>
+        <p data-balance-toggle-target="item" class="font-normal text-gray-700 " hidden>Rs. <%=current_user.wallet.amount%></p>
+        <a data-action="balance-toggle#toggleTargets" class="ml-3 fa-regular fa-eye"></a>
       </div>
     </div>
     <div class="block w-2/6 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 ">
       <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Incoming Transactions</h5>
-      <p class="font-normal text-gray-700 "><%=FundTransaction.funds_recieved(current_user.id).count%></p>
+      <p class="font-normal text-gray-700 "><%=funds_recieved_count(current_user.id)%></p>
     </div>
     <div class="block w-2/6 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 ">
       <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Outgoing Transactions</h5>
-      <p class="font-normal text-gray-700 "><%=FundTransaction.funds_sent(current_user.id).count%></p>
+      <p class="font-normal text-gray-700 "><%=funds_sent_count(current_user.id)%></p>
     </div>
   </div>
   <div class="block my-8 w-auto p-6 bg-white border border-gray-200 rounded-lg shadow-md ">
@@ -34,7 +34,7 @@
       <div class="block w-7/12 p-6 bg-white border border-gray-200 rounded-lg shadow-md  ">
         <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Added Payee details</h5>
         <ul class="max-w-md mb-4 space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-          <% Friendship.friends(current_user.id).last(3).each do |friend|%>
+          <% payee_list(current_user.id).each do |friend|%>
             <li>
               <%=friend.nickname%>
             </li>

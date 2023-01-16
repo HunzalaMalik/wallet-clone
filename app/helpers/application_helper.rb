@@ -12,4 +12,12 @@ module ApplicationHelper
     }
     flashes[level]
   end
+
+  def user_email(id)
+    User.find(id).email
+  end
+
+  def user_name(id)
+    User.find(id).name
+  end
 end

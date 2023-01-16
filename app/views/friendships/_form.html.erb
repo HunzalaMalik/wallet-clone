@@ -13,15 +13,15 @@
   <div class="my-5">
     <%if !form.object.new_record? %>
       <%= form.label :payee %>
-      <%= form.text_field :payee_info, class: "block shadow bg-gray-200  rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", disabled: true, value: User.find(friendship.friend_id).email %>
+      <%= form.text_field :payee_info, class: "block shadow bg-gray-200  rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", disabled: true, value: user_email(friendship.friend_id) %>
     <% else %>
       <%= form.label :payee_email_or_contact_no %>
-      <%= form.text_field :payee_info, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.text_field :payee_info, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true %>
     <%end%>
   </div>
   <div class="my-5">
     <%= form.label :nickname %>
-    <%= form.text_field :nickname, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :nickname, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", required: true%>
   </div>
   <div class="inline">
     <%= form.submit ( form.object.new_record? ? "Create Payee" : "Update Payee"), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

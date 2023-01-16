@@ -1,17 +1,7 @@
-<% if transaction.user_id.eql?(current_user.id) %>
-  <tr class="bg-red-400 dark:bg-gray-800">
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">You (<%= User.find(transaction.user_id).name %>)</td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= User.find(transaction.payee_id).name %></td>
+  <tr class="<%=row_color(transaction, current_user.id)%>">
+    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">You (<%= user_name(transaction.user_id) %>)</td>
+    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= user_name(transaction.payee_id) %></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.purpose_of_payment.name.humanize %></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.amount %></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.created_at %></td>
   </tr>
-<%elsif transaction.payee_id.eql?(current_user.id) %>
-  <tr class="bg-green-400 dark:bg-gray-800">
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= User.find(transaction.user_id).name %></td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">You (<%= User.find(transaction.payee_id).name %>)</td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.purpose_of_payment.name.humanize %></td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.amount %></td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.created_at %></td>
-  </tr>
-<%end%>
