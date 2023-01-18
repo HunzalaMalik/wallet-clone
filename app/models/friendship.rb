@@ -12,7 +12,7 @@ class Friendship < ApplicationRecord
   validate :user_exists
 
   def user_exists
-    user = User.find_by(id: friend_id)
+    user = User.find(friend_id)
 
     return if user.present? && user.has_role?(:user)
 

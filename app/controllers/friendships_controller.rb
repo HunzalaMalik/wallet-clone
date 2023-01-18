@@ -4,6 +4,8 @@ class FriendshipsController < ApplicationController
   load_and_authorize_resource
   before_action :set_friendship, only: %i[edit update destroy]
   before_action :create_friendship, only: %i[create]
+  before_action :set_payee, only: %i[create]
+  before_action :update_friend_id, only: %i[create]
 
   def index
     authorize! :index, FriendshipsController
@@ -55,9 +57,17 @@ class FriendshipsController < ApplicationController
 
   private
 
-  def create_friendship
-    params[:friendship][:friend_id] = User.find_payee(params[:friendship][:payee_info]).last.id
+  def update_friend_id
+    raise ActiveRecord::RecordNotFound if @payee.blank?
 
+    params[:friendship][:friend_id] = @payee.last.id
+  end
+
+  def set_payee
+    @payee = User.find_payee(params[:friendship][:payee_info])
+  end
+
+  def create_friendship
     @friendship = current_user.friendships.build(friendship_params)
   end
 
