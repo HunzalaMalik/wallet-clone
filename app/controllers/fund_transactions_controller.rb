@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
 class FundTransactionsController < ApplicationController
+  load_and_authorize_resource
   before_action :find_payee_id, only: %i[create]
+  before_action :set_payee, only: %i[create]
+  before_action :update_payee_id, only: %i[create]
+
   def index
+    authorize! :index, FundTransactionsController
+
     @pagy, @fund_transactions = pagy(FundTransaction.transactions(current_user.id).order('created_at DESC'), items: 13)
   end
 
   def new
+    authorize! :new, FundTransactionsController
+
     @fund_transaction = if params[:payee_id].present?
                           current_user.fund_transactions.build(payee_id: params[:payee_id])
                         else
@@ -27,8 +35,14 @@ class FundTransactionsController < ApplicationController
 
   private
 
-  def find_payee_id
-    params[:fund_transaction][:payee_id] = User.find_payee(params[:fund_transaction][:payee_info]).last.id
+  def update_payee_id
+    raise ActiveRecord::RecordNotFound if @payee.blank?
+
+    params[:friendship][:friend_id] = @payee.last.id
+  end
+
+  def set_payee
+    @payee = User.find_payee(params[:friendship][:payee_info])
   end
 
   def fund_transaction_params

@@ -2,10 +2,13 @@
   <div class="flex">
     <div class="block w-2/6 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
       <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Total Balance</h5>
+
       <div data-controller="balance-toggle" class= "flex">
+        <p data-balance-toggle-target="item" class="font-normal text-gray-700 " >******</p>
         <p data-balance-toggle-target="item" class="font-normal text-gray-700 " hidden>Rs. <%=current_user.wallet.amount%></p>
         <a data-action="balance-toggle#toggleTargets" class="ml-3 fa-regular fa-eye"></a>
       </div>
+
     </div>
     <div class="block w-2/6 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 ">
       <h5 class="mb-4 text-xl font-bold tracking-tight text-gray-900 ">Incoming Transactions</h5>

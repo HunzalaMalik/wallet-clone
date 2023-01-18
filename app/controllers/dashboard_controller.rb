@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class DashboardController < ApplicationController
-  def index; end
+  def index
+    authorize! :index, DashboardController
+  end
 end
