@@ -9,4 +9,13 @@ class Friendship < ApplicationRecord
   validates :user_id, uniqueness: { scope: :friend_id }
   validates :nickname, presence: true, allow_blank: false,
                        format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }
+  validate :user_exists
+
+  def user_exists
+    user = User.find_by(id: friend_id)
+
+    return if user.present? && user.has_role?(:user)
+
+    errors.add(:friend, "doesn't exists")
+  end
 end

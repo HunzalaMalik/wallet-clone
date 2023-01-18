@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 module Users
-  class RegistrationsController < Devise::RegistrationsController
+  class RegistrationsController < Devise::RegistrationsController  
     before_action :configure_sign_up_params, only: [:create]
     before_action :configure_account_update_params, only: [:update]
-    after_action :assign_role, only: [:create]
-    after_action :create_wallet, only: [:create]
+
+    def edit
+      authorize! :edit, UsersRegistrationsController
+
+      super
+    end
 
     protected
 
@@ -24,14 +28,6 @@ module Users
     def after_update_path_for(_resource)
       flash[:success] = 'Account succesfully updated'
       dashboard_index_path
-    end
-
-    def create_wallet
-      resource.create_wallet(amount: 0)
-    end
-
-    def assign_role
-      resource.add_role(:user)
     end
   end
 end

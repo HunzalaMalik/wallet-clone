@@ -25,4 +25,14 @@ class User < ApplicationRecord
   validates :cnic, presence: true, length: { maximum: 13 }, uniqueness: true
   validates :address, presence: true
   validates :contact_no, presence: true
+
+  after_create :assign_user_role, :create_user_wallet
+
+  def assign_user_role
+    self.add_role ||= :user
+  end
+
+  def create_user_wallet
+    create_wallet(amount: 0)
+  end
 end

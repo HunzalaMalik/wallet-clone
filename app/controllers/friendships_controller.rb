@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 class FriendshipsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_friendship, only: %i[edit update destroy]
   before_action :create_friendship, only: %i[create]
 
   def index
+    authorize! :index, FriendshipsController
+
     @pagy, @friendships = pagy(current_user.friendships.all.order('created_at DESC'), items: 7)
   end
 
   def new
+    authorize! :new, FriendshipsController
+
     @friendship = current_user.friendships.build
   end
 

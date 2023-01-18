@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class WalletsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_wallet, only: %i[update]
 
   def new

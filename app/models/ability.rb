@@ -4,14 +4,40 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # can :create, User
+    user ||= User.new
 
-    # return if user.blank?
+    can :create, User
 
-    # can %i[read update], User, user: user
+    if user.has_role? :user
+      user_abilities(user)
+    elsif user.has_role? :admin
+      admin_abilities
+    end
+  end
 
-    # return unless user.admin?
+  def admin_abilities
+    can :manage, :all
+    can :access, :rails_admin
+    can :manage, :dashboard
+    cannot :index, FriendshipsController
+    cannot :new, FriendshipsController
+    cannot :index, FundTransactionsController
+    cannot :new, FundTransactionsController
+    cannot :index, DashboardController
+    cannot :show, UsersController
+    cannot :edit, Users::RegistrationsController
+  end
 
-    # can %i[read update destroy], User
+  def user_abilities(user)
+    can %i[read update], User, user: user
+    can :manage, Friendship, user: user
+    can %i[read create], FundTransaction, user: user
+    can :index, FriendshipsController
+    can :new, FriendshipsController
+    can :index, FundTransactionsController
+    can :new, FundTransactionsController
+    can :index, DashboardController
+    can :show, UsersController, user: user
+    can :edit, Users::RegistrationsController
   end
 end
