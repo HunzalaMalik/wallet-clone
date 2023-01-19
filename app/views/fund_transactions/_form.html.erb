@@ -23,7 +23,7 @@
   </div>
   <div class="my-8">
     <%= form.label :purpose_of_payment_id, class: "font-semibold"  %>
-    <%= form.select :purpose_of_payment_id, PurposeOfPayment.all.map{ |key| [key.name.humanize, key.id] }, {selected: "Choose Purpose of Payment"}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}%>
+    <%= form.select :purpose_of_payment_id, PurposeOfPayment.all.map{ |key| [key.name.humanize, key.id] }, {prompt: "Choose Purpose of Payment"}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}%>
   </div>
   <div class="my-8">
     <%= form.label :amount, class: "font-semibold"  %>

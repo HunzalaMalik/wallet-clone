@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FundTransaction < ApplicationRecord
+  attr_accessor :payee_info
+
   belongs_to :user
   belongs_to :payee, class_name: 'User'
   belongs_to :purpose_of_payment
@@ -12,6 +14,7 @@ class FundTransaction < ApplicationRecord
 
   before_save :update_user_wallet
   before_save :check_transaction_limit
+  before_validation :set_payee
 
   def funds_validator
     if amount > User.find(user_id).wallet.amount
@@ -34,7 +37,7 @@ class FundTransaction < ApplicationRecord
       raise ActiveRecord::Rollback unless subtract_payment(user_id)
 
       add_payment(payee_id)
-    end
+  end
   rescue ActiveRecord::Rollback
     errors.add(:base, 'Transaction was not successful')
   end
@@ -48,5 +51,13 @@ class FundTransaction < ApplicationRecord
 
     User.find(user_id).wallet.update(amount: User.find(user_id).wallet.amount - 200)
     self.amount = amount + 200
+  end
+
+  def set_payee
+    @payee = User.find_payee(payee_info)
+
+    raise ActiveRecord::RecordNotFound if @payee.blank?
+
+    self.payee_id = @payee&.last.id
   end
 end

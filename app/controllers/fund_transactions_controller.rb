@@ -2,8 +2,6 @@
 
 class FundTransactionsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_payee, only: %i[create]
-  before_action :update_payee_id, only: %i[create]
 
   def index
     authorize! :index, FundTransactionsController
@@ -34,17 +32,7 @@ class FundTransactionsController < ApplicationController
 
   private
 
-  def update_payee_id
-    raise ActiveRecord::RecordNotFound if @payee.blank?
-
-    params[:fund_transaction][:payee_id] = @payee.last.id
-  end
-
-  def set_payee
-    @payee = User.find_payee(params[:fund_transaction][:payee_info])
-  end
-
   def fund_transaction_params
-    params.require(:fund_transaction).permit(:payee_id, :purpose_of_payment_id, :amount)
+    params.require(:fund_transaction).permit(:payee_info, :purpose_of_payment_id, :amount)
   end
 end
