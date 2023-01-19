@@ -40,7 +40,7 @@
           </div>
           <div>
             <%= f.label :gender, class:'block mb-2 text-sm font-medium text-white'%>
-            <%= f.select :gender, User.genders.keys.map{ |key| [key.humanize, key] }, {}, { class: "w-60"}, required: true%>
+            <%= f.select :gender, User.genders.keys.map{ |key| [key.humanize, key] }, {}, { class: "w-60", required: true}%>
           </div>
         </div>
         <div class= "flex justify-around">

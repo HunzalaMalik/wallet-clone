@@ -27,7 +27,7 @@ class User < ApplicationRecord
   after_create :assign_user_role, :create_user_wallet
 
   def assign_user_role
-    self.add_role ||= :user
+    add_role(:user)
   end
 
   def create_user_wallet

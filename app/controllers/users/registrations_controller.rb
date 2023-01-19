@@ -6,7 +6,7 @@ module Users
     before_action :configure_account_update_params, only: [:update]
 
     def edit
-      authorize! :edit, UsersRegistrationsController
+      authorize! :edit, Users::RegistrationsController
 
       super
     end
