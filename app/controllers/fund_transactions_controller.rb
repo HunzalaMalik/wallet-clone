@@ -2,7 +2,6 @@
 
 class FundTransactionsController < ApplicationController
   load_and_authorize_resource
-  before_action :find_payee_id, only: %i[create]
   before_action :set_payee, only: %i[create]
   before_action :update_payee_id, only: %i[create]
 
@@ -38,11 +37,11 @@ class FundTransactionsController < ApplicationController
   def update_payee_id
     raise ActiveRecord::RecordNotFound if @payee.blank?
 
-    params[:friendship][:friend_id] = @payee.last.id
+    params[:fund_transaction][:payee_id] = @payee.last.id
   end
 
   def set_payee
-    @payee = User.find_payee(params[:friendship][:payee_info])
+    @payee = User.find_payee(params[:fund_transaction][:payee_info])
   end
 
   def fund_transaction_params

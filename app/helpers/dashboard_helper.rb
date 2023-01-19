@@ -2,11 +2,11 @@
 
 module DashboardHelper
   def funds_recieved_count(id)
-    FundTransaction.funds_recieved(id).count
+    FundTransaction.where(payee_id: id).count
   end
 
   def funds_sent_count(id)
-    FundTransaction.funds_sent(id).count
+    FundTransaction.where(user_id: id).count
   end
 
   def payee_list(id)

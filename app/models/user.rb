@@ -15,8 +15,6 @@ class User < ApplicationRecord
 
   enum :gender, { male: 0, female: 1, cant_specify: 2 }
 
-  scope :find_payee, ->(info) { where('email=? OR contact_no=?', info, info) }
-
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true, allow_blank: false,
                    format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }
@@ -34,5 +32,13 @@ class User < ApplicationRecord
 
   def create_user_wallet
     create_wallet(amount: 0)
+  end
+
+  def self.find_payee(info)
+    where(email: info).or(where(contact_no: info))
+  end
+
+  def self.user_wallet(id)
+    find(id).wallet
   end
 end
