@@ -1,16 +1,12 @@
 <%= turbo_frame_tag :modal do %>
-  <%= tag.div data: { controller: "turbomodal", turbo_modal_target: "modal", action: "turbo:submit-end->turbomodal#submitEnd click@window->turbomodal#closeBackground"} do %>
-    <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
-    <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center">
-      <div class="bg-white p-4">
-        <div class="flex justify-between">
-          <h1 class="font-bold text-4xl"><%= @title %></h1>
-          <%= link_to "#", data: { action: "click->turbomodal#hideModal" } do%>
-            <i class="fa-regular fa-circle-xmark text-4xl"></i>
-          <% end %>
-        </div>
-        <%= content %>
-      </div>
+  <%= tag.div data: { controller: "turbomodal",
+                      turbomodal_target: "modal",
+                      action: "turbo:submit-end->turbomodal#submitEnd" },
+                      class: "modal-background" do %>
+    <div  class="p-6 bg-gray-300 absolute rounded-lg", style="z-index: 1" >
+      <h1 class="font-bold text-4xl text-center"><%= @title %></h1>
+      <%= content %>
+      <%= button_tag "Close", data: { action: "turbomodal#hideModal" }, type: "button", class: "rounded-lg py-3 px-5 bg-white text-black" %>
     </div>
-  <%end%>
+  <% end %>
 <%end%>

@@ -17,8 +17,8 @@
         <%if current_user && current_user.has_role?(:user)%>
           <%= render "common/navbar" %>
         <%end%>
-        <%= turbo_frame_tag "modal" %>
         <%= render partial: "common/flash" %>
+        <%= turbo_frame_tag "modal"%>
         <%= yield %>
       </main>
       <section class="w-2/4 bg-slate-100	 shadow-xl shadow-gray-500 ">

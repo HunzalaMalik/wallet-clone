@@ -18,4 +18,5 @@ class Friendship < ApplicationRecord
 
     errors.add(:friend, "doesn't exists")
   end
+
 end

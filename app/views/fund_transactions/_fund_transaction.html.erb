@@ -2,6 +2,6 @@
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">You (<%= user_name(transaction.user_id) %>)</td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= user_name(transaction.payee_id) %></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.purpose_of_payment.name.humanize %></td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.amount %></td>
+    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= number_with_precision(transaction.amount , :precision => 1, :delimiter => ',')%></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.created_at %></td>
   </tr>

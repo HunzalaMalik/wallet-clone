@@ -14,3 +14,15 @@
  *= require_self
  */
 @import "font-awesome";
+
+.modal-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    background-color: #0000008a;
+    left: 0;
+    right: 0;
+}

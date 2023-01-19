@@ -50,9 +50,12 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship.destroy
-
-    redirect_to request.referer, success: 'Payee has been removed'
+    if @friendship.destroy
+      flash[:success] = 'Payee has been removed'
+    else
+      flash[:error] = @friendship.errors.full_messages.to_sentence
+    end
+    redirect_to request.referer
   end
 
   private
