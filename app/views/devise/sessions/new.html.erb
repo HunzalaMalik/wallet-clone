@@ -25,7 +25,7 @@
           <%= f.label :remember_me,class: 'ml-2 text-sm font-medium text-white' %> <% end %>
         </div>
       </div>
-      <%= f.submit "Log In", class: "btn-secondary w-full" %>
+      <%= f.submit "Log In",  data: {turbo: false},  class: "btn-secondary w-full" %>
     </div>
     <%= render "devise/shared/links" %> <% end %>
   </div>
