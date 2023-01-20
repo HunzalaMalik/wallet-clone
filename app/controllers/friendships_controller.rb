@@ -3,9 +3,9 @@
 class FriendshipsController < ApplicationController
   load_and_authorize_resource
   before_action :set_friendship, only: %i[edit update destroy]
-  before_action :create_friendship, only: %i[create]
   before_action :set_payee, only: %i[create]
   before_action :update_friend_id, only: %i[create]
+  before_action :create_friendship, only: %i[create]
 
   def index
     authorize! :index, FriendshipsController

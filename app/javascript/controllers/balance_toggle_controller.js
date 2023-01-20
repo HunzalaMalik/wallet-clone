@@ -5,8 +5,16 @@ export default class extends Controller {
 
   toggleTargets(e) {
     this.itemTargets.forEach((target) => {
-      target.hidden = target.hidden ? false : true;
-      e.target.classList.replace(target.hidden ? 'fa-eye' : 'fa-eye-slash', target.hidden ? 'fa-eye-slash' : 'fa-eye');
+      if (target.hidden===false){
+        target.hidden = true
+        e.target.classList.remove('fa-eye-slash');
+        e.target.classList.add('fa-eye');
+        }
+        else {
+          target.hidden = false
+          e.target.classList.remove('fa-eye');
+          e.target.classList.add('fa-eye-slash');
+        }
     });
   }
 }
