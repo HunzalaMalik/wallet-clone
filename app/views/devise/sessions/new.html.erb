@@ -1,0 +1,32 @@
+<div class="flex justify-center mt-44">
+  <div class="w-2/4 p-4 color-primary border border-gray-200 rounded-2xl shadow-xl">
+    <%= render "devise/shared/top_links" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="space-y-9 my-16">
+      <h5 class="text-4xl text-center font-medium text-white">Log In</h5>
+      <div>
+        <%= f.label :email, class:'block mb-2 text-sm font-medium text-white'%> 
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class:
+        'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+        focus:border-blue-500 block w-full p-2.5', required: true %>
+      </div>
+      <div>
+        <%= f.label :password, class:'block mb-2 text-sm font-medium text-white'%> 
+        <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: "Current Password", class: 'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg
+        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5', required: true %>
+      </div>
+      <div class="flex items-start">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <% if devise_mapping.rememberable? %>
+            <%= f.check_box :remember_me,class:'w-4 h-4 border
+            border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 '%>
+          </div>
+          <%= f.label :remember_me,class: 'ml-2 text-sm font-medium text-white' %> <% end %>
+        </div>
+      </div>
+      <%= f.submit "Log In",  data: {turbo: false},  class: "btn-secondary w-full" %>
+    </div>
+    <%= render "devise/shared/links" %> <% end %>
+  </div>
+</div>

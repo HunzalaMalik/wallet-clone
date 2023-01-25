@@ -1,0 +1,38 @@
+<div class="w-full">
+  <h1 class="text-primary font-bold text-4xl text-center">Account Transaction History</h1>
+  <div id="fund_transactions" class="min-w-full" style="height: calc(100vh - 12rem)">
+    <div class="flex flex-col justify-between h-full">
+      <div class="relative overflow-x-auto my-10">
+        <table class="w-11/12 text-sm text-left text-gray-500 mx-8">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+            <tr>
+              <th scope="col" class="px-6 py-3 rounded-l-lg">
+                From
+              </th>
+              <th scope="col" class="px-6 py-3">
+                To
+              </th>
+              <th scope="col" class="px-6 py-3 rounded-r-lg">
+                Purpose of Payment
+              </th>
+              <th scope="col" class="px-6 py-3 rounded-r-lg">
+                Amount
+              </th>
+              <th scope="col" class="px-6 py-3 rounded-r-lg">
+                Time
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @fund_transactions.each do |transaction|%>
+              <%= render partial: "fund_transactions/fund_transaction", locals:{transaction: transaction}%>
+            <%end%>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center">
+        <%== pagy_nav(@pagy, nav_class: 'bg-gray-200') %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<%= turbo_frame_tag :modal do %>
+  <%= tag.div data: { controller: "turbomodal",
+                      turbomodal_target: "modal",
+                      action: "turbo:submit-end->turbomodal#submitEnd" },
+                      class: "modal-background" do %>
+    <div  class="p-6 bg-gray-300 absolute rounded-lg", style="z-index: 1" >
+      <h1 class="font-bold text-4xl text-center"><%= @title %></h1>
+      <%= content %>
+      <%= button_tag "Close", data: { action: "turbomodal#hideModal" }, type: "button", class: "rounded-lg py-3 px-5 bg-white text-black" %>
+    </div>
+  <% end %>
+<%end%>
