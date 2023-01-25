@@ -48,7 +48,7 @@
             <%= f.label :contact_number, class:'block mb-2 text-sm font-medium text-white'%>
             <%= f.text_field :contact_no, autofocus: true, placeholder: "03xxxxxxxxx (without dashes)", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5', required: true %>
+          focus:border-blue-500 block w-full p-2.5', required: true, onkeypress: "return onlyNumberKey(event)" %>
           </div>
           <div>
             <%= f.label :address, class:'block mb-2 text-sm font-medium text-white'%>
@@ -63,3 +63,12 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  function onlyNumberKey(evt) {
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+          return false;
+      return true;
+  }
+</script>

@@ -17,9 +17,11 @@ class FundTransaction < ApplicationRecord
   before_validation :set_payee
 
   def funds_validator
-    if amount > User.find(user_id).wallet.amount
+    return if user.has_role?(:admin)
+
+    if amount > user.wallet.amount
       errors.add(:base, 'Balance is not enough')
-    elsif User.find(user_id).eql?(User.find(payee_id))
+    elsif user.eql?(User.find(payee_id))
       errors.add(:base, "Sender can't be payee")
     end
   end
@@ -29,6 +31,8 @@ class FundTransaction < ApplicationRecord
   end
 
   def subtract_payment(id)
+    return true if user.has_role?(:admin)
+
     User.user_wallet(id).update!(amount: User.user_wallet(id).amount - amount)
   end
 
@@ -37,7 +41,7 @@ class FundTransaction < ApplicationRecord
       raise ActiveRecord::Rollback unless subtract_payment(user_id)
 
       add_payment(payee_id)
-  end
+    end
   rescue ActiveRecord::Rollback
     errors.add(:base, 'Transaction was not successful')
   end
@@ -47,9 +51,9 @@ class FundTransaction < ApplicationRecord
   end
 
   def check_transaction_limit
-    return unless FundTransaction.current_days_total_transactions_amount(user_id) > 25_000
+    return unless FundTransaction.current_days_total_transactions_amount(user_id) > 25_000 && user.has_role?(:user)
 
-    User.find(user_id).wallet.update(amount: User.find(user_id).wallet.amount - 200)
+    user.wallet.update!(amount: user.wallet.amount - 200)
     self.amount = amount + 200
   end
 
@@ -58,6 +62,6 @@ class FundTransaction < ApplicationRecord
 
     raise ActiveRecord::RecordNotFound if @payee.blank?
 
-    self.payee_id = @payee&.last.id
+    self.payee_id = @payee&.last&.id
   end
 end

@@ -25,6 +25,26 @@ RailsAdmin.config do |config|
     list do
       include_fields :user, :amount, :created_at
     end
+
+    edit do
+      field :payee_info, :string do
+        required true
+        html_attributes do
+          {:maxlength => 50}
+         end
+      end
+      field :user_id, :hidden do
+        def value
+          bindings[:view]._current_user.id
+        end
+      end
+      field :purpose_of_payment_id, :enum do
+        enum do
+          PurposeOfPayment.all.collect { |key| [key.name.humanize, key.id] }
+        end
+      end
+      field :amount
+    end
   end
 
   config.model 'FundTransaction' do
