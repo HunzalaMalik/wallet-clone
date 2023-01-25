@@ -20,9 +20,9 @@ class User < ApplicationRecord
                    format: { with: /\A[^0-9`!@#$%\^&*+_=]+\z/ }
   validates :gender, inclusion: { in: User.genders.keys }
   validates :password, length: { maximum: 8 }
-  validates :cnic, presence: true, length: { maximum: 13 }, uniqueness: true
+  validates :cnic, presence: true, length: { is: 13 }, uniqueness: true, numericality: { only_integer: true }
   validates :address, presence: true
-  validates :contact_no, presence: true
+  validates :contact_no, presence: true, length: { is: 11 }
 
   after_create :assign_user_role, :create_user_wallet
 

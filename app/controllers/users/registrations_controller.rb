@@ -26,7 +26,6 @@ module Users
     end
 
     def after_update_path_for(_resource)
-      flash[:success] = 'Account succesfully updated'
       dashboard_index_path
     end
   end
