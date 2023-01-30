@@ -15,13 +15,13 @@ module Users
 
     def configure_sign_up_params
       devise_parameter_sanitizer.permit(:sign_up,
-                                        keys: %i[email password password_confirmation name gender cnic address
+                                        keys: %i[profile_pic email password password_confirmation name gender cnic address
                                                  contact_no])
     end
 
     def configure_account_update_params
       devise_parameter_sanitizer.permit(:account_update,
-                                        keys: %i[email password password_confirmation name gender cnic address
+                                        keys: %i[profile_pic email password password_confirmation name gender cnic address
                                                  contact_no])
     end
 

@@ -1,5 +1,8 @@
 <div class="flex justify-center mt-5 h-3/4">
   <div class="block space-y-8 w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <%= link_to root_path, class: "text-primary text-2xl" do%>
+      <i class="fa-solid fa-arrow-left"></i>
+    <%end%>
     <h1 class="font-bold text-4xl text-center">User Details</h1>
     <span class="flex justify-end">
       <%= link_to "Edit Profile", edit_user_registration_path(current_user), class: 'btn-primary' %>

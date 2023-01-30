@@ -47,6 +47,14 @@ gem 'pagy'
 
 gem 'view_component', '~> 2.82'
 
+gem 'cloudinary'
+
+gem 'figaro'
+
+gem 'mini_magick'
+
+gem 'image_processing', '~> 1.2'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end

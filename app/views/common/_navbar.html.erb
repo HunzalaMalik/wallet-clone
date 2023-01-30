@@ -8,8 +8,13 @@
     <div class='flex md:order-2'>
       <div data-controller="dropdown" class="relative">
         <button class="text-primary" type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-          <%=current_user.name.humanize%>
-          <i class="fa-solid fa-chevron-down"></i>
+          <div class="flex items-center">
+            <%if current_user.profile_pic.attached?%>
+              <p class="mx-1 "><%= cl_image_tag(current_user.profile_pic.key, :width => 50, :crop => :thumb) %></p>
+            <%end%>
+            <%= current_user.name.humanize%>
+            <i class="fa-solid fa-chevron-down ml-2"></i>
+          </div>
         </button>
         <div
           data-dropdown-target="menu"

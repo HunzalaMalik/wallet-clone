@@ -3,8 +3,14 @@
     <%= render "devise/shared/top_links" %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
-      <div class="space-y-9 my-16">
+      <div class="space-y-9 my-8">
         <h5 class="text-4xl text-center font-medium text-white">Sign Up</h5>
+        <div>
+          <%= f.label :profile_pic, class:'block mb-2 text-sm font-medium text-white'%>
+          <%= f.file_field :profile_pic ,accept: "image/png, image/jpeg" , class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5',required: true %>
+        </div>
         <div class= "flex justify-around">
           <div class= "mr-10">
             <%= f.label :email, class:'block mb-2 text-sm font-medium text-white'%>
@@ -14,7 +20,7 @@
           </div>
           <div>
             <%= f.label :name, class:'block mb-2 text-sm font-medium text-white'%>
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "name", class:
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Enter Name", class:
           'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
           focus:border-blue-500 block w-full p-2.5', required: true %>
           </div>
@@ -63,7 +69,6 @@
     <% end %>
   </div>
 </div>
-
 <script>
   function onlyNumberKey(evt) {
       var ASCIICode = (evt.which) ? evt.which : evt.keyCode
