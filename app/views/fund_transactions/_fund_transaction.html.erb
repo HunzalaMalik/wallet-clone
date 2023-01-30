@@ -1,7 +1,7 @@
   <tr class="<%=row_color(transaction, current_user.id)%>">
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"> <%=sender_col(transaction, current_user.id)%></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%=receiver_col(transaction, current_user.id)%></td>
-    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.purpose_of_payment.name.humanize %></td>
+    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.purpose_of_payment.purpose.humanize %></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= number_with_precision(transaction.amount , :precision => 1, :delimiter => ',')%></td>
     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap"><%= transaction.created_at %></td>
   </tr>

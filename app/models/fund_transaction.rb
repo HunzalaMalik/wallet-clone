@@ -24,7 +24,7 @@ class FundTransaction < ApplicationRecord
     FundsTransactionService.new(self).check_limit
   end
 
-  def self.current_days_total_transactions_amount(id)
+  def self.current_day_transactions_amount(id)
     where('DATE(created_at) = DATE(?)', Time.zone.now).and(where(user_id: id))&.sum(:amount)
   end
 
