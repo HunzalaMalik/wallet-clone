@@ -26,8 +26,9 @@ class FundsTransactionService
   end
 
   def check_limit
-    unless FundTransaction.current_day_transactions_amount(@resource.user_id) > 25_000 &&
-           @resource.user.has_role?(:user)
+    binding.break
+    unless (FundTransaction.current_day_transactions_amount(@resource.user_id) + @resource.amount) >
+           25_000 && @resource.user.has_role?(:user)
       return
     end
 
