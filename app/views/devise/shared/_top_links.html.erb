@@ -1,4 +1,8 @@
 <div class= "flex justify-between">
-    <%= link_to "Go Back", :back, class: "text-white font-semibold "%><br />
-    <%= link_to "Home Page", home_index_path, class: "text-white font-semibold text-right"%><br />
+  <%= link_to :back, class: "text-white text-2xl" do%>
+    <i class="fa-solid fa-arrow-left"></i>
+  <%end%>
+  <%= link_to home_index_path, class: "text-white text-xl" do%>
+    <i class="fa-solid fa-house"></i>
+  <%end%>
 </div>
