@@ -1,5 +1,5 @@
 <div class="flex justify-center mt-5 h-5/6">
-  <div class=" space-y-8 w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+  <div class=" space-y-6 w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
     <%= link_to :back, class: "text-primary text-2xl" do%>
       <i class="fa-solid fa-arrow-left"></i>
     <%end%>
@@ -7,7 +7,15 @@
     <div class="flex justify-center">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="space-y-9 my-14 max-w-xl ">
+        <div class="space-y-6 max-w-xl ">
+          <div>
+            <%= f.label class:'block mb-2 text-sm font-medium text-black' do%>
+              Profile Picture <span class="text font-semibold">(Attached File: <%=current_user.profile_pic.filename%>)</span>
+            <%end%>
+            <%= f.file_field :profile_pic , accept: "image/png, image/jpeg" , class:
+          'bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5',required: true %>
+          </div>
           <div class= "flex justify-around">
             <div class= "mr-10">
               <%= f.label :email, class:'block mb-2 text-sm font-medium text-black'%>
