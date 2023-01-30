@@ -1,17 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# This file is the source Rails uses to define your schema when running `bin/rails
-# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
-#
-# It's strongly recommended that you check this file into your version control system.
-
 ActiveRecord::Schema[7.0].define(version: 2023_01_19_125618) do
-  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
@@ -29,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_125618) do
     t.bigint "user_id", null: false
     t.bigint "payee_id", null: false
     t.bigint "purpose_of_payment_id", null: false
-    t.integer "amount", default: 0
+    t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payee_id"], name: "index_fund_transactions_on_payee_id"
@@ -38,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_125618) do
   end
 
   create_table "purpose_of_payments", force: :cascade do |t|
-    t.string "name"
+    t.string "purpose", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_125618) do
     t.string "address", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "contact_no"
+    t.string "contact_no", null: false
     t.integer "failed_attempts", default: 0
     t.string "unlock_token"
     t.datetime "locked_at"
@@ -88,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_125618) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.integer "amount", default: 0
+    t.integer "amount", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

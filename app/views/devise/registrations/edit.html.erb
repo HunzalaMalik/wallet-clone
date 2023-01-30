@@ -1,10 +1,13 @@
 <div class="flex justify-center mt-5 h-5/6">
   <div class=" space-y-8 w-11/12 p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <%= link_to :back, class: "text-primary text-2xl" do%>
+      <i class="fa-solid fa-arrow-left"></i>
+    <%end%>
     <h5 class="text-4xl text-center font-medium text-black">Edit User</h5>
     <div class="flex justify-center">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="space-y-9 my-16 max-w-xl ">
+        <div class="space-y-9 my-14 max-w-xl ">
           <div class= "flex justify-around">
             <div class= "mr-10">
               <%= f.label :email, class:'block mb-2 text-sm font-medium text-black'%>

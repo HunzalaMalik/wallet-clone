@@ -37,8 +37,4 @@ class User < ApplicationRecord
   def self.find_payee(info)
     where(email: info).or(where(contact_no: info))
   end
-
-  def self.user_wallet(id)
-    find(id).wallet
-  end
 end
