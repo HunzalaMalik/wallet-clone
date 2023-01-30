@@ -9,8 +9,8 @@ u3.confirm
 u3.remove_role :user
 u3.add_role :admin
 
-PurposeOfPayment.create!(name: "Fuel Reimbursment")
-PurposeOfPayment.create!(name: "Recharge")
-PurposeOfPayment.create!(name: "Charity")
-PurposeOfPayment.create!(name: "Donation")
+PurposeOfPayment.create!(purpose: "Fuel Reimbursment")
+PurposeOfPayment.create!(purpose: "Recharge")
+PurposeOfPayment.create!(purpose: "Charity")
+PurposeOfPayment.create!(purpose: "Donation")
 
