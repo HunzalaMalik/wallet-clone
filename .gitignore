@@ -36,3 +36,6 @@
 /node_modules
 
 /db/schema.rb
+
+# Ignore application configuration
+/config/application.yml
